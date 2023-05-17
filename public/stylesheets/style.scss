@@ -1,0 +1,24 @@
+@import "./partials/variables";
+@import "./partials/header";
+@import "./partials/central";
+@import "./partials/cards";
+@import "./partials/about";
+@import "./partials/search";
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    // border: solid red 5px;
+}
+
+
+body{
+    font-family: $font-principal;
+   
+    
+
+    button{
+        border:none;
+    }
+}

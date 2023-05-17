@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <!-- link a google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Finlandica:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- link a los iconos de google -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+  <main>
+    <div class="cover">
+
+      <header>
+        <nav class="nav">
+
+          <div class="logo">
+            <img src="./images/logow.png" alt="Logo" />
+          </div>
+
+          <input type="checkbox" id="menu" />
+          <label for="menu"> ☰ </label>
+
+          <ul class="menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Propiedades</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+
+        </nav>
+      </header>
+
+      <section class="central">
+        <div class="presentacion">
+          <div class="phone"><span class="material-symbols-outlined">phone_iphone</span> +5492914121109</div>
+          <h1 class="title">Encontra la casa de tus sueños!</h1>
+          <h4 class="subtitle">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam id quae, a possimus,
+          </h4>
+          <button type="button">Contactanos!</button>
+
+        </div>
+        <div class="contacto">
+          <h3>Necesitas Ayuda?</h3>
+          <h2>Escribinos</h2>
+          <form>
+            <label for="name"></label>
+            <input class="forms" placeholder="Nombre" type="text" id="name" name="name" required>
+            <label for="email"></label>
+            <input class="forms" placeholder="Email" type="email" id="email" name="email" required>
+            <label for="message"></label>
+            <textarea class="forms" placeholder="Mensaje" id="message" name="message" rows="5" required></textarea>
+            <button class="form-button" type="submit">Enviar Mensaje</button>
+          </form>
+
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <section class="latest-properties">
+    <h2 class="latest-properties-title">Popiedades mas recientes</h2>
+    <div class="cards">
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Alquiler</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+  </section>
+
+
+
+  <div class="about">
+    <div class="about-cover">
+      <div class="about-content">
+        <img class="about-content-img" src="./images/como-montar-inmobiliaria.jpg" alt="">
+        <div class="about-text">
+          <h3> Quienes Somos?</h3>
+          <h2>Sobre Nosotros</h2>
+          <p>Somos una empresa dedicada a acompañar a nuestros clientes en el proceso de compra,
+            venta, alquileres e inversiones fiduciarias.
+            En nuestro asesoramiento priman el compromiso y la empatía, es por eso que nos capacitamos
+            día a día, para brindarles novedades sobre nuevos proyectos de inversión, optimizando las
+            posibilidades a fin de lograr la mayor efectividad posible en las operaciones; utilizando para
+            ello, además, asesoría profesional, legal y técnica</p>
+          <button class="about-content-btn">Contactanos</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <section class="featured-properties">
+    <h2 class="featured-properties-title">Propiedades Destacadas</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+  </section>
+
+  <div class="search">
+    <div class="search-cover">
+      <div class="search-text">
+        <h3>Estamos para ayudarte</h3>
+        <h2>Que estas Buscando?</h2>
+
+        <div class="search-cards">
+
+          <div class="search-card">
+            <span class="material-symbols-outlined">
+              house
+            </span>
+            <p class="search-card-title">Casas</p>
+            <div class="line"></div>
+            <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
+              sint unde iste nostrum suscipit?</p>
+            <button class="search-card-button">Buscar Casas</button>
+          </div>
+
+          <div class="search-card">
+            <span class="material-symbols-outlined">
+              apartment
+              </span>
+            <p class="search-card-title">Departamentos</p>
+            <div class="line"></div>
+            <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
+              sint unde iste nostrum suscipit?</p>
+            <button class="search-card-button">Buscar Departamentos</button>
+          </div>
+
+          <div class="search-card">
+            <span class="material-symbols-outlined">
+              partner_exchange
+              </span>
+            <p class="search-card-title">Fideicomisos</p>
+            <div class="line"></div>
+            <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
+              sint unde iste nostrum suscipit?</p>
+            <button class="search-card-button">Buscar Fideicomisos</button>
+          </div>
+          <div class="search-card">
+
+            <span class="material-symbols-outlined">
+              foundation
+              </span>
+            <p class="search-card-title">Proyectos</p>
+            <div class="line"></div>
+            <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
+              sint unde iste nostrum suscipit?</p>
+            <button class="search-card-button">Buscar Proyectos</button>
+          </div>
+          <div class="search-card">
+
+            <span class="material-symbols-outlined">
+              storefront
+              </span>
+            <p class="search-card-title">Locales</p>
+            <div class="line"></div>
+            <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
+              sint unde iste nostrum suscipit?</p>
+            <button class="search-card-button">Buscar Locales</button>
+          </div>
+          <div class="search-card">
+
+            <span class="material-symbols-outlined">
+              attach_money
+              </span>
+            <p class="search-card-title">Tasación</p>
+            <div class="line"></div>
+            <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
+              sint unde iste nostrum suscipit?</p>
+            <button class="search-card-button">Consultar por Tasaciones</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <script src="./javascripts/index.js"></script>
+
+</body>
+
+
+
+</html>
