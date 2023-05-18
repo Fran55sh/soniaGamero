@@ -13,10 +13,13 @@
     // border: solid red 5px;
 }
 
+.cover, .about-cover,.search-cover{
+max-width: 100%;
+}
+
 
 body{
     font-family: $font-principal;
-   
     
 
     button{

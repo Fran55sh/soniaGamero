@@ -208,6 +208,10 @@
   color: #3e4095;
   font-weight: 100;
 }
+.featured-properties .cards, .latest-properties .cards {
+  width: 100%;
+  overflow: hidden;
+}
 .featured-properties .cards .card, .latest-properties .cards .card {
   background-color: transparent;
   display: flex;
@@ -258,6 +262,7 @@
   }
   .latest-properties .cards, .featured-properties .cards {
     display: flex;
+    justify-content: space-around;
   }
   .latest-properties .cards .card, .featured-properties .cards .card {
     width: 25%;
@@ -457,6 +462,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.cover, .about-cover, .search-cover {
+  max-width: 100%;
 }
 
 body {
