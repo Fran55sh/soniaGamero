@@ -1,0 +1,45 @@
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%;
+    margin: auto;
+    padding: 50px 0px 50px 0px;
+
+    h2 {
+        color: $color-principal;
+        font-weight: 500;
+        font-size: 3rem;
+
+        padding: 20px;
+    }
+
+    .footer-button {
+        font-family: $font-principal;
+        font-weight: 500;
+        letter-spacing: 1px;
+        font-size: 1rem;
+        background-color: $color-principal;
+        color: white;
+        padding: 15px 30px 15px 30px;
+
+        &:hover{
+            color: $color-secundario;
+        }
+    }
+
+}
+.footer-social{
+    display: flex;
+    justify-content: space-between;
+    max-width: 30%;
+    margin: auto;
+
+    span{
+        
+        img{
+            width: 30px;
+        }
+    }
+    
+}

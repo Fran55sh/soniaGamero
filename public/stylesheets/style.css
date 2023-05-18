@@ -351,6 +351,7 @@
   align-items: center;
   text-align: center;
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 .search-cover .search-text h3 {
   text-align: center;
@@ -415,6 +416,43 @@
     flex-basis: calc(33.33% - 10px);
   }
 }
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  margin: auto;
+  padding: 50px 0px 50px 0px;
+}
+.footer-text h2 {
+  color: #3e4095;
+  font-weight: 500;
+  font-size: 3rem;
+  padding: 20px;
+}
+.footer-text .footer-button {
+  font-family: "Finlandica", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  background-color: #3e4095;
+  color: white;
+  padding: 15px 30px 15px 30px;
+}
+.footer-text .footer-button:hover {
+  color: #ff0000;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: space-between;
+  max-width: 30%;
+  margin: auto;
+}
+.footer-social span img {
+  width: 30px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
