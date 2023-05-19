@@ -8,7 +8,7 @@ const sequelize = new Sequelize('inmobiliaria', 'root', '', {
 });
 
 const propiedadesModel = sequelize.define(
-  'Propiedad',
+  'Propiedades',
   {
     nombre: {
       type: DataTypes.STRING,
@@ -29,53 +29,46 @@ const propiedadesModel = sequelize.define(
     },
   },
   {
-    timestamps: false, // Deshabilita las columnas createdAt y updatedAt
+    timestamps: false,
   }
 );
 
-
-
-
-// Define el modelo de Tipo
-const tipoModel = sequelize.define('tipo', {
+const tipoModel = sequelize.define('Tipos', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  timestamps: false,
 });
 
-// Define el modelo de Condicion
-const condicionModel = sequelize.define('condicion', {
+const condicionModel = sequelize.define('Condiciones', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  timestamps: false,
 });
 
-const fotoModel = sequelize.define('foto', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
+const fotoModel = sequelize.define('Fotos', {
+  ruta: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
-  datos: {
-    type: DataTypes.JSON,
-    allowNull: false
-  }
+  timestamps: false,
 });
 
-// Relaciones entre modelos
-propiedadesModel.belongsTo(tipoModel);
-propiedadesModel.belongsTo(condicionModel);
-propiedadesModel.hasMany(fotoModel, { foreignKey: 'propiedad_id' });
+// Establece las relaciones entre los modelos
+propiedadesModel.belongsTo(tipoModel, { foreignKey: 'tipoId' });
+propiedadesModel.belongsTo(condicionModel, { foreignKey: 'condicionId' });
+propiedadesModel.hasMany(fotoModel, { foreignKey: 'propiedadId' });
 
 // Sincroniza los modelos con la base de datos
 sequelize.sync()
   .then(() => {
-    console.log('Modelos sincronizados con la base de datos');
+    console.log('Modelos sincronizados correctamente');
   })
   .catch((error) => {
-    console.error('Error al sincronizar modelos:', error);
+    console.error('Error al sincronizar los modelos:', error);
   });
 
 // Exporta los modelos
@@ -83,7 +76,6 @@ module.exports = {
   propiedadesModel,
   tipoModel,
   condicionModel,
-  fotoModel,
   sequelize,
 };
 
