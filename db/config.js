@@ -7,33 +7,37 @@ const sequelize = new Sequelize('inmobiliaria', 'root', '', {
   dialect: 'mariadb',
 });
 
-// Define el modelo de Propiedad
-const Propiedad = sequelize.define('Propiedad', {
-  nombre: {
-    type: DataTypes.STRING,
-    allowNull: false,
+const propiedadesModel = sequelize.define(
+  'Propiedad',
+  {
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    descripcion: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    precio: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
+    esDestacado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
-  descripcion: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
-  precio: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: false,
-  },
-  esDestacado: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
-  },
-  foto: {
-    type: DataTypes.STRING, // O puedes utilizar DataTypes.TEXT si deseas almacenar la URL completa
-    allowNull: true,
-  },
-});
+  {
+    timestamps: false, // Deshabilita las columnas createdAt y updatedAt
+  }
+);
+
+
+
 
 // Define el modelo de Tipo
-const Tipo = sequelize.define('Tipo', {
+const tipoModel = sequelize.define('tipo', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -41,16 +45,29 @@ const Tipo = sequelize.define('Tipo', {
 });
 
 // Define el modelo de Condicion
-const Condicion = sequelize.define('Condicion', {
+const condicionModel = sequelize.define('condicion', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 });
 
+const fotoModel = sequelize.define('foto', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  datos: {
+    type: DataTypes.JSON,
+    allowNull: false
+  }
+});
+
 // Relaciones entre modelos
-Propiedad.belongsTo(Tipo);
-Propiedad.belongsTo(Condicion);
+propiedadesModel.belongsTo(tipoModel);
+propiedadesModel.belongsTo(condicionModel);
+propiedadesModel.hasMany(fotoModel, { foreignKey: 'propiedad_id' });
 
 // Sincroniza los modelos con la base de datos
 sequelize.sync()
@@ -63,8 +80,10 @@ sequelize.sync()
 
 // Exporta los modelos
 module.exports = {
-  Propiedad,
-  Tipo,
-  Condicion,
+  propiedadesModel,
+  tipoModel,
+  condicionModel,
+  fotoModel,
   sequelize,
 };
+

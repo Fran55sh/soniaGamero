@@ -16,15 +16,16 @@
     <label for="esDestacado">Es destacado:</label>
     <input type="checkbox" id="esDestacado"><br><br>
 
-    <label for="foto">URL de la foto:</label>
+    <label for="fotos">Seleccionar fotos:</label>
+  <input type="file" id="fotos" name="fotos" multiple>
     <input type="text" id="foto"><br><br>
 
     <label for="tipo">Tipo:</label>
     <select id="tipo" required>
       <option value="">Seleccione un tipo</option>
-      <option value="Casa">Casa</option>
-      <option value="Departamento">Departamento</option>
-      <option value="Fideicomiso">Fideicomiso</option>
+      <option value="Casas">Casas</option>
+      <option value="Departamentos">Departamentos</option>
+      <option value="Fideicomisos">Fideicomisos</option>
       <option value="Proyectos">Proyectos</option>
       <option value="Locales">Locales</option>
     </select><br><br>
@@ -39,47 +40,13 @@
     <button type="submit">Crear</button>
   </form>
 
-  <script>
-    // Agrega un listener al evento submit del formulario
-    document.getElementById('propiedadForm').addEventListener('submit', (event) => {
-      event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+  
+  <h1>Lista de Propiedades</h1>
+  <button onclick="getCourses()">listar</button>
 
-      // Obtiene los valores ingresados por el usuario
-      const nombre = document.getElementById('nombre').value;
-      const descripcion = document.getElementById('descripcion').value;
-      const precio = document.getElementById('precio').value;
-      const esDestacado = document.getElementById('esDestacado').checked;
-      const foto = document.getElementById('foto').value;
-      const tipo = document.getElementById('tipo').value;
-      const condicion = document.getElementById('condicion').value;
+  <div id="propiedades-container"></div>
 
-      // Realiza una solicitud HTTP al servidor para crear la nueva propiedad
-      fetch('/crear-propiedad', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nombre,
-          descripcion,
-          precio,
-          esDestacado,
-          foto,
-          tipo,
-          condicion,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          alert('Propiedad creada exitosamente');
-          // Puedes redirigir al usuario a otra página o realizar alguna acción adicional después de crear la propiedad
-        })
-        .catch((error) => {
-          console.error('Error al crear la propiedad:', error);
-          alert('Error al crear la propiedad');
-        });
-    });
-  </script>
+
+  <script src="./javascripts/restricted.js"></script>
 </body>
 </html>
