@@ -1,10 +1,11 @@
 require("dotenv").config();
 let express = require("express");
 let router = express.Router();
-const fs = require("fs");
 const Propiedades = require("../controllers/propiedadesControllers");
 const Usuario = require('../controllers/userControllers')
-const { propiedadesModel } = require("../db/config"); // Ajusta la ruta del archivo models.js según tu estructura de directorios
+const { propiedadesModel } = require("../db/config"); 
+const {upload}  = require('../controllers/propiedadesControllers')
+
 
 /* GET home page. */
 
@@ -20,10 +21,12 @@ router.get("/admin", function (req, res, next) {
   res.render("admin", { title: "Sonia Gamero Propiedades" });
 });
 
-router.get("/api/propiedades", Propiedades.getPropiedades);
+router.get('/api/propiedades', Propiedades.getPropiedades);
 
 router.post("/acceso-restringido", Usuario.userAuth);
 
-router.post("/crear-propiedad",  Propiedades.postPropiedad
-)
+router.post("/crear-propiedad",  Propiedades.postPropiedad)
+
+router.post("/subir-fotos", Propiedades.postFotos);
+
 module.exports = router;

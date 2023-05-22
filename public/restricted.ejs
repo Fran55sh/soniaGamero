@@ -55,7 +55,7 @@
   
       <script>
         // Obtén las propiedades disponibles y rellena el dropdown
-        fetch("/api/propiedades")
+        fetch("api/propiedades")
           .then((response) => response.json())
           .then((data) => {
             const propiedadDropdown = document.getElementById("propiedadId");
@@ -95,7 +95,7 @@
           })
             .then((response) => response.json())
             .then((data) => {
-              alert("Fotos enviadas exitosamente");
+              alert("Fotos enviadas exitosamente", data);
               // Puedes realizar alguna acción adicional después de enviar las fotos
             })
             .catch((error) => {

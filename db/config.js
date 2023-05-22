@@ -8,7 +8,7 @@ const sequelize = new Sequelize('inmobiliaria', 'root', '', {
 });
 
 const propiedadesModel = sequelize.define(
-  'Propiedades',
+  'propiedades',
   {
     nombre: {
       type: DataTypes.STRING,
@@ -29,24 +29,24 @@ const propiedadesModel = sequelize.define(
     },
   },
   {
-    timestamps: false,
+    // timestamps: false,
   }
 );
 
-const tipoModel = sequelize.define('Tipos', {
+const tipoModel = sequelize.define('tipos', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  timestamps: false,
+  // timestamps: false,
 });
 
-const condicionModel = sequelize.define('Condiciones', {
+const condicionModel = sequelize.define('condiciones', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  timestamps: false,
+  // timestamps: false,
 });
 
 const fotoModel = sequelize.define('Fotos', {
@@ -54,7 +54,7 @@ const fotoModel = sequelize.define('Fotos', {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  timestamps: false,
+  // timestamps: false,
 });
 
 // Establece las relaciones entre los modelos

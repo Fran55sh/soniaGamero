@@ -7,7 +7,7 @@ function renderPropiedades(propiedades) {
                 <p>${propiedad.descripcion}</p>
                 <p>Precio: $${propiedad.precio}</p>
                 <p>Tipo: ${propiedad.tipo.nombre}</p>
-                <p>Condición: ${propiedad.condicion.nombre}</p>
+                <p>Condición: ${propiedad.condicione.nombre}</p>
                 <hr>
             `;
     propiedadesContainer.appendChild(propiedadElement);

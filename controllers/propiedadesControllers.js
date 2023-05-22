@@ -1,5 +1,8 @@
 const { propiedadesModel, tipoModel, condicionModel } = require('../db/config');
 const { getTipoId, getCondicionId } = require("../helpers/getTiposConditions");
+const path = require('path');
+  const fs = require('fs');
+
 
 class Propiedades {
 
@@ -7,11 +10,8 @@ class Propiedades {
 
     try {
       // Obtiene todas las propiedades con sus relaciones
-      const propiedades = await Propiedad.findAll({
-        include: [{ model: Tipo }, { model: Condicion }],
-        attributes: {
-          exclude: ['createdAt', 'updatedAt', 'Tipo.createdAt', 'Tipo.updatedAt']
-        }
+      const propiedades = await propiedadesModel.findAll({
+        include: [{ model: tipoModel }, { model: condicionModel }],
       });
 
       // Devuelve las propiedades con relaciones en la respuesta
@@ -23,9 +23,9 @@ class Propiedades {
   }
 
   static async postPropiedad(req, res) {
-    console.log('entro aca')
     try {
       console.log(req.body)
+      console.log('entro aca')
       const { nombre, descripcion, precio, esDestacado, tipo, condicion } = req.body;
 
       const tipoId = getTipoId(tipo);
@@ -57,6 +57,7 @@ class Propiedades {
       });
 
       // Devuelve la propiedad creada como respuesta
+
       res.status(201).json(propiedad);
     } catch (error) {
       // Manejo de errores
@@ -65,36 +66,52 @@ class Propiedades {
     }
   }
 
-  static async postFotos(req, res) {
-  try {
-    const propiedadesId = req.body.propiedadId; // Obtén el ID de la propiedad desde la solicitud (ajusta esto según tu implementación)
-    const fotos = req.files.fotos; // Obtén las fotos del cuerpo de la solicitud (asegúrate de que el campo en el formulario se llame "fotos")
 
-    for (let i = 0; i < fotos.length; i++) {
-      const foto = fotos[i];
 
-      // Genera un nombre único para la foto
-      const nombreFoto = Date.now() + '_' + i + path.extname(foto.name);
-
-      // Crea la ruta completa donde se guardará la foto
-      const rutaFoto = path.join(__dirname, 'public/images/propiedades', nombreFoto);
-
-      // Guarda la foto en el sistema de archivos
-      await foto.mv(rutaFoto);
-
-      // Crea una nueva instancia de Foto con el nombre de la foto y el ID de la propiedad
-      await fotosModel.create({
-        nombre: nombreFoto,
-        propiedadId: propiedadesId,
-      });
+  
+  
+  // ...
+  
+  static async postFotos (req, res) {
+    try {
+      console.log(`entra aca y el body es ${req.body}`)
+      const propiedadesId = req.body.propiedadId;
+      const fotos = req.files.fotos;
+  
+      for (let i = 0; i < fotos.length; i++) {
+        const foto = fotos[i];
+        const nombreFoto = Date.now() + '_' + i + path.extname(foto.name);
+        const rutaFoto = path.join(__dirname, 'public/images/propiedades', nombreFoto);
+  
+        // Crea una función de promesa para guardar la foto en el sistema de archivos
+        const guardarFoto = (rutaFoto) => {
+          return new Promise((resolve, reject) => {
+            foto.mv(rutaFoto, (error) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve();
+              }
+            });
+          });
+        };
+  
+        // Guarda la foto en el sistema de archivos
+        await guardarFoto(rutaFoto);
+  
+        // Crea una nueva instancia de Foto con el nombre de la foto y el ID de la propiedad
+        await fotosModel.create({
+          nombre: nombreFoto,
+          propiedadId: propiedadesId,
+        });
+      }
+  
+      res.status(200).json({ message: 'Fotos almacenadas exitosamente' });
+    } catch (error) {
+      console.error('Error al almacenar las fotos:', error);
+      res.status(500).json({ error: 'Error al almacenar las fotos' });
     }
-
-    res.status(200).json({ message: 'Fotos almacenadas exitosamente' });
-  } catch (error) {
-    console.error('Error al almacenar las fotos:', error);
-    res.status(500).json({ error: 'Error al almacenar las fotos' });
-  }
-};
+  };
 
 };
 
