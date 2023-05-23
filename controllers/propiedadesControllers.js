@@ -1,5 +1,6 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs')
 const { propiedadesModel, tipoModel, condicionModel, fotoModel } = require('../db/config');
 const { getTipoId, getCondicionId } = require("../helpers/getTiposConditions");
 
@@ -67,7 +68,6 @@ class Propiedades {
         return res.status(400).json({ error: "Tipo o condicion inválido" });
       }
 
-      console.log("por aqui", tipoId, condicionId);
 
       // Crea la propiedad en la base de datos
       const propiedad = await propiedadesModel.create({
@@ -116,7 +116,57 @@ static async postFotos (req, res) {
   }
 };
 
-// Aplica el middleware de multer en la ruta para manejar los datos de FormData
+
+static async deletePropiedad(req, res) {
+  
+  try {
+    const propiedadId = req.body.propiedadId;
+
+    // Obtén la lista de nombres de imágenes asociadas a la propiedad desde la base de datos
+    const fotos = await fotoModel.findAll({
+      where: {
+        propiedadId: propiedadId
+      },
+      attributes: ['nombre']
+    });
+
+    // Elimina las imágenes del sistema de archivos
+    for (let i = 0; i < fotos.length; i++) {
+      const foto = fotos[i];
+      const rutaFoto = path.join(__dirname, "../public/images/propiedades", foto.nombre);
+     
+      
+      try {
+        // Verifica si la imagen existe en el sistema de archivos antes de eliminarla
+        if (fs.existsSync(rutaFoto)) {
+          // Elimina la imagen del sistema de archivos
+          fs.unlinkSync(rutaFoto);
+        }
+      } catch (err) {
+        console.error("Error al eliminar la imagen del sistema de archivos:", err);
+      }
+    }
+
+    // Elimina los registros de imágenes asociados a la propiedad de la base de datos
+    await fotoModel.destroy({
+      where: {
+        propiedadId: propiedadId
+      }
+    });
+
+    // Elimina la propiedad de la base de datos
+    await propiedadesModel.destroy({
+      where: {
+        id: propiedadId
+      }
+    });
+
+    res.status(200).json({ message: 'Propiedad y sus imágenes eliminadas correctamente' });
+  } catch (error) {
+    console.error('Error al eliminar la propiedad y sus imágenes:', error);
+    res.status(500).json({ error: 'Error al eliminar la propiedad y sus imágenes' });
+  }
+}
 
 
 

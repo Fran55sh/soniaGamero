@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <% include ./ejs/head %>
-<body>
+    <% include ./ejs/restrictedhead %>
+<body class="restricted">
+  <section class="crear-propiedad">
+<div class="propiedad">
+
   <h1>Crear Propiedad</h1>
   <form id="propiedadForm">
     <label for="nombre">Nombre:</label>
@@ -36,90 +39,86 @@
     <button type="submit">Crear</button>
   </form>
 
+</div>
+<div class="foto">
 
-      <h1>Subir Fotos</h1>
+
+  <h1>Subir Fotos</h1>
+  <form id="fotosForm" enctype="multipart/form-data">
+    <label for="propiedadId">Propiedad:</label>
+    <select id="propiedadId" name="propiedadId">
+      <!-- Opciones de propiedades -->
+    </select>
+    <br>
   
-      <form id="fotosForm" enctype="multipart/form-data">
-        <label for="propiedadId">Propiedad:</label>
-        <select id="propiedadId" name="propiedadId">
-          <!-- Opciones de propiedades -->
-        </select>
-        <br>
+    <label for="fotos">Fotos:</label>
+    <input class="file-input" type="file" id="fotos" name="fotos" accept="image/*" multiple>
+    <br>
   
-        <label for="fotos">Fotos:</label>
-        <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
-        <br>
-  
-        <input type="submit" value="Enviar">
-      </form>
+    <input class="formButton" type="submit" value="Enviar">
+  </form>
+</div>
+
+
+
+
+  </section>
+
+
 
 
       
       <h1>Lista de Propiedades</h1>
-      <button onclick="getPropiedades()">listar</button>
     
       <div id="propiedades-container"></div>
-  
-      <script>
-        // Obtén las propiedades disponibles y rellena el dropdown
-        fetch("api/propiedades")
-          .then((response) => response.json())
-          .then((data) => {
-            const propiedadDropdown = document.getElementById("propiedadId");
-            data.forEach((propiedad) => {
-              const option = document.createElement("option");
-              option.value = propiedad.id;
-              option.textContent = propiedad.nombre;
-              propiedadDropdown.appendChild(option);
-            });
-          })
-          .catch((error) => {
-            console.error("Error al obtener las propiedades:", error);
-          });
-  
-        // Agrega un listener al evento submit del formulario
-        document.getElementById("fotosForm").addEventListener("submit", (event) => {
-          event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-  
-          // Obtiene el ID de la propiedad seleccionada
-          const propiedadId = document.getElementById("propiedadId").value;
-  
-          // Obtiene los archivos de imagen seleccionados
-          const fotosInput = document.getElementById("fotos");
-          const fotos = fotosInput.files;
-         
-  
-          // Crea un objeto FormData para enviar los datos
-          const formData = new FormData();
-          formData.append("propiedadId", propiedadId);
-          console.log(formData)
-          for (let i = 0; i < fotos.length; i++) {
-            formData.append("fotos", fotos[i]);
-            console.log(formData)
-          }
-           console.log(formData)
-  
-          // Realiza una solicitud HTTP al servidor para subir las fotos
-          fetch("/subir-fotos", {
-            method: "POST",
-            body: formData,
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              alert("Fotos enviadas exitosamente", data);
-              // Puedes realizar alguna acción adicional después de enviar las fotos
-            })
-            .catch((error) => {
-              console.error("Error al enviar las fotos:", error);
-              alert("Error al enviar las fotos");
-            });
-        });
-      </script>
-    
-  
 
+
+      <div class="limiter">
+        <div class="container-table100">
+        <div class="wrap-table100">
+        <div class="table100">
+        <table>
+        <thead>
+        <tr class="table100-head">
+        <th class="column1">Nombre</th>
+        <th class="column2">Descripcion</th>
+        <th class="column3">Precio</th>
+        <th class="column4">Tipo</th>
+        <th class="column5">Condicion</th>
+        <th class="column6">Eliminar</th>
+        </tr>
+        </thead>
+        <tbody class="tbodyElement">
+      
+        </tbody>
+
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
+  
 
 
   <script src="./javascripts/restricted.js"></script>
+  <script src="./javascripts/jquery-3.2.1.min.js"></script>
+
+<script src="./javascripts/popper.js"></script>
+<script src="./javascripts/bootstrap.min.js"></script>
+
+<script src="./javascripts/select2.min.js"></script>
+
+<script src="./javascripts/main.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-23581568-13');
+	</script>
+<!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7cba62a9ff6ca78f","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.4.0","si":100}' crossorigin="anonymous"></script> -->
+
 </body>
 </html>

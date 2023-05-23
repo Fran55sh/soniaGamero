@@ -29,4 +29,6 @@ router.post("/crear-propiedad",  Propiedades.postPropiedad)
 
 router.post("/subir-fotos", Propiedades.postFotos);
 
+router.delete('/eliminar-propiedad', Propiedades.deletePropiedad)
+
 module.exports = router;
