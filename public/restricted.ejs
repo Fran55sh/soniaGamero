@@ -52,6 +52,13 @@
   
         <input type="submit" value="Enviar">
       </form>
+
+
+      
+      <h1>Lista de Propiedades</h1>
+      <button onclick="getPropiedades()">listar</button>
+    
+      <div id="propiedades-container"></div>
   
       <script>
         // Obtén las propiedades disponibles y rellena el dropdown
@@ -80,13 +87,17 @@
           // Obtiene los archivos de imagen seleccionados
           const fotosInput = document.getElementById("fotos");
           const fotos = fotosInput.files;
+         
   
           // Crea un objeto FormData para enviar los datos
           const formData = new FormData();
           formData.append("propiedadId", propiedadId);
+          console.log(formData)
           for (let i = 0; i < fotos.length; i++) {
             formData.append("fotos", fotos[i]);
+            console.log(formData)
           }
+           console.log(formData)
   
           // Realiza una solicitud HTTP al servidor para subir las fotos
           fetch("/subir-fotos", {
@@ -107,11 +118,6 @@
     
   
 
-  
-  <h1>Lista de Propiedades</h1>
-  <button onclick="getPropiedades()">listar</button>
-
-  <div id="propiedades-container"></div>
 
 
   <script src="./javascripts/restricted.js"></script>

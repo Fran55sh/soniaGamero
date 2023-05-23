@@ -50,7 +50,7 @@ const condicionModel = sequelize.define('condiciones', {
 });
 
 const fotoModel = sequelize.define('Fotos', {
-  ruta: {
+  nombre: {
     type: DataTypes.STRING,
     allowNull: true,
   },
@@ -76,6 +76,7 @@ module.exports = {
   propiedadesModel,
   tipoModel,
   condicionModel,
+  fotoModel,
   sequelize,
 };
 

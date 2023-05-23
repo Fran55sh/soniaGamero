@@ -4,7 +4,7 @@ let router = express.Router();
 const Propiedades = require("../controllers/propiedadesControllers");
 const Usuario = require('../controllers/userControllers')
 const { propiedadesModel } = require("../db/config"); 
-const {upload}  = require('../controllers/propiedadesControllers')
+const upload = require("../controllers/propiedadesControllers")
 
 
 /* GET home page. */

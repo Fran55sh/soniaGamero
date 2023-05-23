@@ -1,9 +1,18 @@
-const { propiedadesModel, tipoModel, condicionModel } = require('../db/config');
-const { getTipoId, getCondicionId } = require("../helpers/getTiposConditions");
+const multer = require('multer');
 const path = require('path');
-  const fs = require('fs');
+const { propiedadesModel, tipoModel, condicionModel, fotoModel } = require('../db/config');
+const { getTipoId, getCondicionId } = require("../helpers/getTiposConditions");
 
+let storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'public/images/propiedades'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '_' + file.originalname);
+  }
+});
 
+const upload = multer({ storage: storage });
 class Propiedades {
 
   static async getPropiedades(req, res) {
@@ -11,9 +20,23 @@ class Propiedades {
     try {
       // Obtiene todas las propiedades con sus relaciones
       const propiedades = await propiedadesModel.findAll({
-        include: [{ model: tipoModel }, { model: condicionModel }],
+        include: [
+          { model: tipoModel },
+          {model: condicionModel}, 
+          { model: fotoModel,  }
+        ],
       });
-
+      
+      console.log(propiedades)
+      const propiedadesConFotos = propiedades.map(propiedad => {
+        const fotos = propiedad.fotos?.map(foto => foto.nombre) || [];
+        return {
+          ...propiedad.toJSON(),
+          fotos: fotos
+        };
+      });;
+      
+      console.log(propiedadesConFotos);
       // Devuelve las propiedades con relaciones en la respuesta
       res.json(propiedades);
     } catch (error) {
@@ -27,7 +50,7 @@ class Propiedades {
       console.log(req.body)
       console.log('entro aca')
       const { nombre, descripcion, precio, esDestacado, tipo, condicion } = req.body;
-
+      
       const tipoId = getTipoId(tipo);
       const condicionId = getCondicionId(condicion);
       let esDestacadoValue = 0;
@@ -67,51 +90,35 @@ class Propiedades {
   }
 
 
+// Maneja la solicitud POST utilizando multer
+static async postFotos (req, res) {
+  try {
+    const propiedadesId = req.body.propiedadId;
+    const fotos = req.files;
 
-  
-  
-  // ...
-  
-  static async postFotos (req, res) {
-    try {
-      console.log(`entra aca y el body es ${req.body}`)
-      const propiedadesId = req.body.propiedadId;
-      const fotos = req.files.fotos;
-  
-      for (let i = 0; i < fotos.length; i++) {
-        const foto = fotos[i];
-        const nombreFoto = Date.now() + '_' + i + path.extname(foto.name);
-        const rutaFoto = path.join(__dirname, 'public/images/propiedades', nombreFoto);
-  
-        // Crea una función de promesa para guardar la foto en el sistema de archivos
-        const guardarFoto = (rutaFoto) => {
-          return new Promise((resolve, reject) => {
-            foto.mv(rutaFoto, (error) => {
-              if (error) {
-                reject(error);
-              } else {
-                resolve();
-              }
-            });
-          });
-        };
-  
-        // Guarda la foto en el sistema de archivos
-        await guardarFoto(rutaFoto);
-  
-        // Crea una nueva instancia de Foto con el nombre de la foto y el ID de la propiedad
-        await fotosModel.create({
-          nombre: nombreFoto,
-          propiedadId: propiedadesId,
-        });
-      }
-  
-      res.status(200).json({ message: 'Fotos almacenadas exitosamente' });
-    } catch (error) {
-      console.error('Error al almacenar las fotos:', error);
-      res.status(500).json({ error: 'Error al almacenar las fotos' });
+    for (let i = 0; i < fotos.length; i++) {
+      const foto = fotos[i];
+      const nombreFoto = foto.filename;
+      const rutaFoto = foto.path;
+      console.log(nombreFoto)
+
+      // Crea una nueva instancia de Foto con el nombre de la foto y el ID de la propiedad
+      await fotoModel.create({
+        nombre: nombreFoto,
+        propiedadId: propiedadesId,
+      });
     }
-  };
+
+    res.status(200).json({ message: 'Fotos almacenadas exitosamente' });
+  } catch (error) {
+    console.error('Error al almacenar las fotos:', error);
+    res.status(500).json({ error: 'Error al almacenar las fotos' });
+  }
+};
+
+// Aplica el middleware de multer en la ruta para manejar los datos de FormData
+
+
 
 };
 
@@ -119,4 +126,4 @@ class Propiedades {
 
 
 
-module.exports = Propiedades;
+module.exports = Propiedades, upload;

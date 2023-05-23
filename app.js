@@ -6,6 +6,19 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 const config = require("./db/config")
+const multer = require('multer');
+
+
+let storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'public/images/propiedades'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '_' + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 
 var indexRouter = require('./routes/index');
@@ -33,7 +46,7 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(upload.array('fotos'));
 app.use(indexRouter);
 
 // app.use('/users', usersRouter);
