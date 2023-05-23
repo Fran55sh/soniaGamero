@@ -1,6 +1,5 @@
 // Ruta para crear una propiedad
 const getTipoId = (tipo) => {
-    console.log(tipo)
     switch (tipo) {
       case 'Casas':
         return 1;
@@ -18,7 +17,6 @@ const getTipoId = (tipo) => {
   };
   
   const getCondicionId = (condicion) => {
-    console.log(condicion)
     switch (condicion) {
       case 'Venta':
         return 1;

@@ -32,12 +32,10 @@ document.getElementById("fotosForm").addEventListener("submit", (event) => {
   // Crea un objeto FormData para enviar los datos
   const formData = new FormData();
   formData.append("propiedadId", propiedadId);
-  console.log(formData);
   for (let i = 0; i < fotos.length; i++) {
     formData.append("fotos", fotos[i]);
-    console.log(formData);
   }
-  console.log(formData);
+  console.log(`este es el ${formData}` );
 
   // Realiza una solicitud HTTP al servidor para subir las fotos
   fetch("/subir-fotos", {
@@ -53,7 +51,7 @@ document.getElementById("fotosForm").addEventListener("submit", (event) => {
       console.error("Error al enviar las fotos:", error);
       alert("Error al enviar las fotos");
     });
-  location.reload();
+  // location.reload();
 });
 
 //renderiza toas las propiedades listadas
@@ -85,9 +83,9 @@ function renderPropiedades(propiedades) {
     
       <td class="column1">${propiedad.nombre}</td>
       <td class="column2">${propiedad.descripcion}</td>
-      <td class="column3">${propiedad.tipo.nombre}</td>
-      <td class="column4">${propiedad.condicione.nombre}</td>
-      <td class="column5">${propiedad.precio}</td>
+      <td class="column3">${propiedad.precio}</td>
+      <td class="column4">${propiedad.tipo.nombre}</td>
+      <td class="column5">${propiedad.condicione.nombre}</td>
       <td class="column6"><button class="eliminarPropiedadBtn" data-propiedad-id=${propiedad.id}>Eliminar Propiedad</button></td>
     
   `;
@@ -95,18 +93,6 @@ function renderPropiedades(propiedades) {
       })
 
 
-  //   propiedadElement.innerHTML = `
-  //   <h2>${propiedad.nombre}</h2>
-  //   <p>${propiedad.descripcion}</p>
-  //   <p>Precio: $${propiedad.precio}</p>
-  //               <p>Tipo: ${propiedad.tipo.nombre}</p>
-  //               <p>Condición: ${propiedad.condicione.nombre}</p>
-  //               <button class="eliminarPropiedadBtn" data-propiedad-id=${propiedad.id}>Eliminar Propiedad</button>
-
-  //           `;
-  //   propiedadElement.appendChild(imgElement);
-  //   propiedadesContainer.appendChild(propiedadElement);
-  // });
 }
 
 async function getPropiedades() {
@@ -134,7 +120,6 @@ async function getPropiedades() {
         .then((response) => response.json())
         .then((data) => {
           // Maneja la respuesta del servidor aquí
-          console.log(data);
           location.reload();
         })
         .catch((error) => {
@@ -152,6 +137,8 @@ document.getElementById("propiedadForm").addEventListener("submit", (event) => {
   // Obtiene los valores ingresados por el usuario
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
+  const descripcioncorta = document.getElementById("descripcioncorta").value;
+  const direccion = document.getElementById("direccion").value;
   const precio = document.getElementById("precio").value;
   const esDestacado = document.getElementById("esDestacado").checked;
   const tipo = document.getElementById("tipo").value;
@@ -167,6 +154,8 @@ document.getElementById("propiedadForm").addEventListener("submit", (event) => {
     body: JSON.stringify({
       nombre,
       descripcion,
+      descripcioncorta,
+      direccion,
       precio,
       esDestacado,
       tipo,

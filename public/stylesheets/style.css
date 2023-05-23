@@ -462,6 +462,8 @@
   background-image: linear-gradient(rgba(62, 64, 149, 0.5), rgba(62, 64, 149, 0.5));
   font-family: "Finlandica", sans-serif !important;
   line-height: 1 !important;
+  /* Estilos para el formulario */
+  /* Estilos para el input file */
 }
 .restricted .container-table100 {
   background: none;
@@ -475,8 +477,7 @@
   font-family: "Finlandica", sans-serif !important;
   line-height: 1 !important;
 }
-
-.crear-propiedad {
+.restricted .crear-propiedad {
   width: 93vw;
   display: flex;
   margin: auto;
@@ -485,36 +486,32 @@
   margin-top: 50px;
   margin-bottom: 40px;
 }
-.crear-propiedad .propiedad, .crear-propiedad .foto {
+.restricted .crear-propiedad .propiedad, .restricted .crear-propiedad .foto {
   min-width: 40%;
 }
-.crear-propiedad form {
+.restricted .crear-propiedad form {
   width: 90%;
 }
-.crear-propiedad form label {
+.restricted .crear-propiedad form label {
   display: block;
   width: 100%;
 }
-.crear-propiedad form input, .crear-propiedad form textarea, .crear-propiedad form select {
+.restricted .crear-propiedad form input, .restricted .crear-propiedad form textarea, .restricted .crear-propiedad form select {
   width: 100%;
 }
-
-/* Estilos para el formulario */
-form {
+.restricted form {
   width: 300px;
   margin: 0 auto;
 }
-
-label {
+.restricted label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
-
-input[type=text],
-textarea,
-input[type=number],
-select {
+.restricted input[type=text],
+.restricted textarea,
+.restricted input[type=number],
+.restricted select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -522,19 +519,16 @@ select {
   font-size: 16px;
   transition: box-shadow 0.3s ease;
 }
-
-input[type=text]:hover,
-textarea:hover,
-input[type=number]:hover,
-select:hover {
+.restricted input[type=text]:hover,
+.restricted textarea:hover,
+.restricted input[type=number]:hover,
+.restricted select:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
-
-input[type=checkbox] {
+.restricted input[type=checkbox] {
   margin-top: 5px;
 }
-
-button[type=submit], .formButton {
+.restricted button[type=submit], .restricted .formButton {
   padding: 10px 20px;
   background-color: #3e4095;
   color: #fff;
@@ -544,13 +538,10 @@ button[type=submit], .formButton {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
-.formButton {
+.restricted .formButton {
   max-width: 20%;
 }
-
-/* Estilos para el input file */
-.file-input {
+.restricted .file-input {
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -561,16 +552,14 @@ button[type=submit], .formButton {
   border-radius: 4px;
   cursor: pointer;
 }
-
-.file-input input[type=file] {
+.restricted .file-input input[type=file] {
   position: absolute;
   font-size: 100px;
   opacity: 0;
   right: 0;
   top: 0;
 }
-
-.file-input label {
+.restricted .file-input label {
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -583,10 +572,27 @@ button[type=submit], .formButton {
   text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 900px) {
+  .crear-propiedad {
+    flex-direction: column;
+    width: 100%;
+  }
+  .crear-propiedad #propiedadForm {
+    min-width: 90vw;
+  }
+  .crear-propiedad #fotosForm {
+    min-width: 70vw;
+  }
+}
+#coverPropiedades {
+  min-height: 60vh;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Finlandica", sans-serif;
 }
 
 .cover, .about-cover, .search-cover {

@@ -28,7 +28,6 @@ class Propiedades {
         ],
       });
       
-      console.log(propiedades)
       const propiedadesConFotos = propiedades.map(propiedad => {
         const fotos = propiedad.fotos?.map(foto => foto.nombre) || [];
         return {
@@ -37,7 +36,6 @@ class Propiedades {
         };
       });;
       
-      console.log(propiedadesConFotos);
       // Devuelve las propiedades con relaciones en la respuesta
       res.json(propiedades);
     } catch (error) {
@@ -48,20 +46,16 @@ class Propiedades {
 
   static async postPropiedad(req, res) {
     try {
-      console.log(req.body)
-      console.log('entro aca')
-      const { nombre, descripcion, precio, esDestacado, tipo, condicion } = req.body;
+      const { nombre, descripcion, descripcioncorta, direccion, precio, esDestacado, tipo, condicion } = req.body;
       
       const tipoId = getTipoId(tipo);
       const condicionId = getCondicionId(condicion);
       let esDestacadoValue = 0;
 
-      console.log(`tipo ${tipoId} - condicion ${condicionId}`)
       if (esDestacado === true) {
         esDestacadoValue = 1;
       }
 
-      // console.log(nombre, descripcion,precio, esDestacado, foto, tipo, condicion )
 
       if (tipoId === null || condicionId === null) {
         // Manejo de error si tipo o condicion no son válidos
@@ -73,6 +67,8 @@ class Propiedades {
       const propiedad = await propiedadesModel.create({
         nombre,
         descripcion,
+        descripcioncorta,
+        direccion,
         precio,
         esDestacado,
         tipoId,
@@ -92,6 +88,7 @@ class Propiedades {
 
 // Maneja la solicitud POST utilizando multer
 static async postFotos (req, res) {
+  console.log('entra aca')
   try {
     const propiedadesId = req.body.propiedadId;
     const fotos = req.files;
@@ -100,7 +97,6 @@ static async postFotos (req, res) {
       const foto = fotos[i];
       const nombreFoto = foto.filename;
       const rutaFoto = foto.path;
-      console.log(nombreFoto)
 
       // Crea una nueva instancia de Foto con el nombre de la foto y el ID de la propiedad
       await fotoModel.create({

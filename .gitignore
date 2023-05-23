@@ -1,2 +1,7 @@
 node_modules/
-public/images/propiedades
+# Archivos de imagen
+*.jpg
+*.jpeg
+*.png
+*.gif
+

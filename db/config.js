@@ -18,6 +18,14 @@ const propiedadesModel = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    descripcioncorta: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    direccion: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     precio: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
@@ -49,7 +57,7 @@ const condicionModel = sequelize.define('condiciones', {
   // timestamps: false,
 });
 
-const fotoModel = sequelize.define('Fotos', {
+const fotoModel = sequelize.define('fotos', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: true,

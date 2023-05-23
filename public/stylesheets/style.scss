@@ -6,12 +6,16 @@
 @import "./partials/search";
 @import "./partials/footer";
 @import "./partials/restricted";
+@import "./partials/propiedades";
 
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    // border: solid red 5px;
+    // border: solid red 5px
+    font-family: $font-principal;
+
+    
 }
 
 .cover, .about-cover,.search-cover{
