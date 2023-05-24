@@ -23,47 +23,55 @@
                             </div>
                             <h1>
                                 <div class="card-propiedad">
-                                    <p class="card-propiedad-description-name">
-                                        <%= propiedad[0].nombre %>
-                                    </p>
                                     <div class="swiper">
                                         <div class="swiper-wrapper">
                                             <% propiedad[0].fotos.forEach(foto=> { %>
                                                 <div class="swiper-slide">
                                                     <img class="swiper-slide-img"
-                                                        src="/images/propiedades/<%= foto.nombre %>" alt="">
+                                                    src="/images/propiedades/<%= foto.nombre %>" alt="">
                                                 </div>
                                                 <% }) %>
 
+                                            </div>
+                                            <!-- If we need navigation buttons -->
+                                            <div class="swiper-button-prev"></div>
+                                            <div class="swiper-button-next"></div>
                                         </div>
-                                        <!-- If we need navigation buttons -->
-                                        <div class="swiper-button-prev"></div>
-                                        <div class="swiper-button-next"></div>
-                                    </div>
-                                    <div class="card-descripcion-wrapper">
-
+                                        <div class="card-descripcion-wrapper">
+                                            
+                                            <p class="card-propiedad-description-name">
+                                                <%= propiedad[0].nombre %>
+                                            </p>
 
                                         <p class="card-propiedad-condition">
-                                            <%= propiedad[0].condicione.nombre %>
+                                            En <%= propiedad[0].condicione.nombre %>
                                         </p>
                                         <div class="card-propiedad-description">
-                                            <p class="card-description-type">
+                                            <!-- <p class="card-description-type">
                                                 <%= propiedad[0].tipo.nombre %>
-                                            </p>
+                                            </p> -->
                                             <p class="card-propiedad-description-price">
-                                                u$d<%= propiedad[0].precio %>
+                                                Precio: u$d <%= propiedad[0].precio %>
                                             </p>
                                             <p class="card-propiedad-description-specs">
                                                 <%= propiedad[0].descripcion %>
                                             </p>
                                     </div>
 
-                                    </div>
+                                    
+                                </div>
+                                <div class="card-descripcion-wrapper">
+                                    <p class="card-propiedad-description-specs">
+                                        <%= propiedad[0].descripcioncorta %>
+                                    </p>
+                                </div>
                                 </div>
                             </h1>
 
+<div class="mapa">
 
-               
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.837640754919!2d-62.207243725207995!3d-38.698573585121295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95eda385eafd9d01%3A0x99dc7dc564551b60!2sHoracio%20Quiroga%201800%2C%20B8002DCH%20Bah%C3%ADa%20Blanca%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1sen!2sar!4v1684955304735!5m2!1sen!2sar" style="margin: auto;" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
 
 
                         <% include ./ejs/footer %>
