@@ -585,7 +585,137 @@
   }
 }
 #coverPropiedades {
-  min-height: 60vh;
+  min-height: 0vh;
+}
+#coverPropiedades .coverPropiedadesText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  line-height: px;
+  max-height: 300px;
+}
+#coverPropiedades .coverPropiedadesText h1 {
+  text-align: center;
+  height: 382px;
+  line-height: 200px;
+  font-size: 4rem;
+  color: white;
+  letter-spacing: 0.5rem;
+}
+
+.main-properties {
+  max-width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.main-properties .main-properties-title {
+  color: #3e4095;
+  font-weight: 100;
+}
+.main-properties .cards {
+  width: 100%;
+  overflow: hidden;
+}
+.main-properties .cards .card {
+  background-color: transparent;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+.main-properties .cards .card .card-img {
+  width: 90%;
+  aspect-ratio: 16/10;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main-properties .cards .card .card-condition {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  width: 100%;
+  margin-top: 0;
+  padding: 15px;
+}
+.main-properties .cards .card button {
+  font-family: "Finlandica", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  background-color: white;
+  color: #ff0000;
+  padding: 5px 10px 5px 10px;
+}
+.main-properties .cards .card .for-sale {
+  background-color: #3e4095;
+}
+.main-properties .cards .card .for-rent {
+  background-color: #ff0000;
+}
+.main-properties .cards .card .card-description {
+  align-self: baseline;
+}
+.main-properties .cards .card .card-description .card-description-type,
+.main-properties .cards .card .card-description .card-description-name,
+.main-properties .cards .card .card-description .card-description-price,
+.main-properties .cards .card .card-description .card-description-specs {
+  margin: 8px;
+}
+.main-properties .cards .card .card-description .card-description-name {
+  color: #3e4095;
+  font-size: 1.5rem;
+}
+.main-properties .cards .card .card-description .card-description-price {
+  color: #3e4095;
+  font-size: 1.2rem;
+}
+.main-properties .cards .card .card-description .card-description-specs {
+  color: #ff0000;
+  font-size: 0.8rem;
+}
+
+@media screen and (min-width: 900px) {
+  .main-properties {
+    max-width: 95%;
+  }
+  .main-properties .cards {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    /* Estilos para la flecha de navegación previa */
+    /* Estilos para la flecha de navegación siguiente */
+  }
+  .main-properties .cards .card {
+    width: 25%;
+    margin: 40px;
+  }
+  .main-properties .cards .swiper-button-prev {
+    --swiper-navigation-size: 20px;
+    color: white;
+  }
+  .main-properties .cards .swiper-button-next {
+    --swiper-navigation-size: 20px;
+    color: white;
+  }
+}
+.swiper {
+  width: 90%;
+  aspect-ratio: 16/10;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper-slide-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 * {
@@ -597,6 +727,10 @@
 
 .cover, .about-cover, .search-cover {
   max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

@@ -173,7 +173,7 @@
 
   </section>
 
-  <div class="search">
+  <div class="search" id="search">
     <div class="search-cover">
       <div class="search-text">
         <h3>Estamos para ayudarte</h3>
@@ -189,7 +189,7 @@
             <div class="line"></div>
             <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
               sint unde iste nostrum suscipit?</p>
-            <button class="search-card-button">Buscar Casas</button>
+            <button class="search-card-button" data-propiedad-tipo=Casas >Buscar Casas</button>
           </div>
 
           <div class="search-card">
@@ -200,7 +200,7 @@
             <div class="line"></div>
             <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
               sint unde iste nostrum suscipit?</p>
-            <button class="search-card-button">Buscar Departamentos</button>
+            <button class="search-card-button" data-propiedad-tipo=Departamentos>Buscar Departamentos</button>
           </div>
 
           <div class="search-card">
@@ -211,7 +211,7 @@
             <div class="line"></div>
             <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
               sint unde iste nostrum suscipit?</p>
-            <button class="search-card-button">Buscar Fideicomisos</button>
+            <button class="search-card-button"data-propiedad-tipo=Fideicomisos>Buscar Fideicomisos</button>
           </div>
           <div class="search-card">
 
@@ -222,7 +222,7 @@
             <div class="line"></div>
             <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
               sint unde iste nostrum suscipit?</p>
-            <button class="search-card-button">Buscar Proyectos</button>
+            <button class="search-card-button" data-propiedad-tipo=Proyectos>Buscar Proyectos</button>
           </div>
           <div class="search-card">
 
@@ -233,7 +233,7 @@
             <div class="line"></div>
             <p class="search-card-description"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est voluptates
               sint unde iste nostrum suscipit?</p>
-            <button class="search-card-button">Buscar Locales</button>
+            <button class="search-card-button" data-propiedad-tipo=Locales>Buscar Locales</button>
           </div>
           <div class="search-card">
 
@@ -254,22 +254,7 @@
 
   </div>
 
-  <footer>
-
-    <div class="footer-text">
-      <p class="phone"> +5492914121109 </p>
-      <h2 class="footer-text-inner">Encontremos juntos el lugar que te mereces!</h2>
-      <button class="footer-button">Contactanos</button>
-    </div>
-    <div class="footer-social">
-      <span class="social">
-         <img class="facebook social-svg " src="./images/facebook.svg" alt="">
-      </span>
-      <span class="social"><img class="intagram social-svg" src="./images/instagram.svg" alt=""></span>
-      <span class="social"><img class="twitter social-svg" src="./images/twitter.svg" alt=""></span>
-
-    </div>
-  </footer>
+  <% include ./ejs/footer %>
 
 
   <script src="./javascripts/index.js"></script>

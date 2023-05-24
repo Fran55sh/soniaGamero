@@ -22,10 +22,13 @@
 max-width: 100%;
 }
 
+html{
+
+    scroll-behavior: smooth;
+}
 
 body{
     font-family: $font-principal;
-    
 
     button{
         border:none;

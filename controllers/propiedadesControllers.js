@@ -44,6 +44,40 @@ class Propiedades {
     }
   }
 
+  static async getPropiedadesByTipo(req, res) {
+    const tipo = req.params.dato
+    console.log(tipo)
+    try {
+      // Obtiene todas las propiedades con sus relaciones
+      const propiedades = await propiedadesModel.findAll({
+        include: [
+          { model: tipoModel },
+          { model: condicionModel },
+          { model: fotoModel }
+        ],
+        where: {
+          '$tipo.nombre$': tipo
+        }
+      });
+      
+      
+      // Devuelve las propiedades con relaciones en la respuesta
+      if (propiedades.length === 0) {
+        // Maneja el caso cuando no hay propiedades encontradas
+        res.render('propiedades', { propiedades: null }); // o puedes pasar un mensaje de error
+      } else {
+        // Devuelve las propiedades con relaciones en la respuesta
+        console.log(propiedades);
+        res.render('propiedades', { propiedades });
+      }
+
+
+    } catch (error) {
+      console.error('Error al obtener las propiedades:', error);
+      res.status(500).json({ error: 'Error al obtener las propiedades' });
+    }
+  }
+
   static async postPropiedad(req, res) {
     try {
       const { nombre, descripcion, descripcioncorta, direccion, precio, esDestacado, tipo, condicion } = req.body;
@@ -163,8 +197,6 @@ static async deletePropiedad(req, res) {
     res.status(500).json({ error: 'Error al eliminar la propiedad y sus imágenes' });
   }
 }
-
-
 
 };
 

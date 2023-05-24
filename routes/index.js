@@ -21,7 +21,14 @@ router.get("/admin", function (req, res, next) {
   res.render("admin", { title: "Sonia Gamero Propiedades" });
 });
 
+router.get('/detallePropiedad', function(req,res,next){
+  res.render("detallePropiedad")
+})
+
 router.get('/api/propiedades', Propiedades.getPropiedades);
+
+router.get('/api/propiedades/:dato', Propiedades.getPropiedadesByTipo);
+
 
 router.post("/acceso-restringido", Usuario.userAuth);
 
