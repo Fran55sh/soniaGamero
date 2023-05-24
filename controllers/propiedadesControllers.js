@@ -44,6 +44,44 @@ class Propiedades {
     }
   }
 
+  static async getPropiedadesById(req, res) {
+    const id = req.params.id
+    console.log(id)
+    try {
+      // Obtiene todas las propiedades con sus relaciones
+      const propiedad = await propiedadesModel.findAll({
+        include: [
+          { model: tipoModel },
+          { model: condicionModel },
+          { model: fotoModel }
+        ],
+        where: {
+          '$propiedades.id$': id
+        }
+      });
+      
+      
+      // Devuelve la propiedad con relaciones en la respuesta
+      if (propiedad.length === 0) {
+        // Maneja el caso cuando no hay propiedad encontradas
+        res.render('detallePropiedad', { propiedad: null }); // o puedes pasar un mensaje de error
+      } else {
+        // Devuelve la propiedad con relaciones en la respuesta
+        console.log(propiedad);
+        res.render('detallePropiedad', { propiedad });
+        // res.json(propiedad)
+        
+
+      }
+
+
+    } catch (error) {
+      console.error('Error al obtener la propiedad:', error);
+      res.status(500).json({ error: 'Error al obtener la propiedad' });
+    }
+  }
+
+
   static async getPropiedadesByTipo(req, res) {
     const tipo = req.params.dato
     console.log(tipo)

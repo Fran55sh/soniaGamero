@@ -29,6 +29,7 @@ router.get('/api/propiedades', Propiedades.getPropiedades);
 
 router.get('/api/propiedades/:dato', Propiedades.getPropiedadesByTipo);
 
+router.get('/api/propiedad/:id', Propiedades.getPropiedadesById)
 
 router.post("/acceso-restringido", Usuario.userAuth);
 
