@@ -22,7 +22,7 @@
     .card-descripcion-wrapper {
         display: flex;
         flex-direction: column;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         max-width: 80%;
         margin: auto;
         margin-top: 15px;
@@ -32,6 +32,11 @@
         .card-propiedad-description-name{
             font-size: 2rem;
             font-weight: 500;
+            margin-left: 0;
+        }
+
+        .card-propiedad-description-price{
+            font-weight: 300;
         }
         .card-propiedad-description-specs{
 
@@ -45,7 +50,7 @@
         p {
             
             margin: 15px;
-            font-size: 1rem;
+            font-size: 1.3rem;
             font-weight: 100;
             text-align: justify;
         }
