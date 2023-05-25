@@ -82,7 +82,7 @@ function renderPropiedades(propiedades) {
     tableElement.innerHTML= `
     
       <td class="column1">${propiedad.nombre}</td>
-      <td class="column2">${propiedad.descripcion}</td>
+      <td class="column2">${propiedad.descripcion.slice(0,60)}...</td>
       <td class="column3">${propiedad.precio}</td>
       <td class="column4">${propiedad.tipo.nombre}</td>
       <td class="column5">${propiedad.condicione.nombre}</td>
@@ -141,6 +141,7 @@ document.getElementById("propiedadForm").addEventListener("submit", (event) => {
   const direccion = document.getElementById("direccion").value;
   const precio = document.getElementById("precio").value;
   const esDestacado = document.getElementById("esDestacado").checked;
+  const mapa = document.getElementById("mapa").value;
   const tipo = document.getElementById("tipo").value;
   const condicion = document.getElementById("condicion").value;
 
@@ -158,6 +159,7 @@ document.getElementById("propiedadForm").addEventListener("submit", (event) => {
       direccion,
       precio,
       esDestacado,
+      mapa,
       tipo,
       condicion,
     }),

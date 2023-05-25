@@ -27,13 +27,17 @@ const propiedadesModel = sequelize.define(
       allowNull: false,
     },
     precio: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     esDestacado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    mapa: {
+      type: DataTypes.TEXT,
+      allowNull: false,
     },
   },
   {

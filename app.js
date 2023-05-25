@@ -7,6 +7,7 @@ var logger = require('morgan');
 const cors = require('cors');
 const config = require("./db/config")
 const multer = require('multer');
+const nodemailer = require('nodemailer');
 
 
 let storage = multer.diskStorage({
@@ -35,8 +36,6 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
 };
 
-
-
 // Configuración del middleware body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -51,10 +50,6 @@ app.use(indexRouter);
 
 // app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function(err, req, res, next) {

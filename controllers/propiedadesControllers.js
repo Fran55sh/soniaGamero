@@ -107,6 +107,7 @@ class Propiedades {
         // Devuelve las propiedades con relaciones en la respuesta
         console.log(propiedades);
         res.render('propiedades', { propiedades });
+        // res.json(propiedades)
       }
 
 
@@ -116,9 +117,85 @@ class Propiedades {
     }
   }
 
+  static async getPropiedadesBydate(req, res) {
+    try {
+      // Obtiene las últimas 4 propiedades creadas con sus relaciones
+      const ultimasPropiedades = await propiedadesModel.findAll({
+        include: [
+          { model: tipoModel },
+          { model: condicionModel },
+          { model: fotoModel }
+        ],
+
+        order: [['createdAt', 'DESC']],
+        limit: 4
+      });
+
+      const value = 1
+        const featPropiedades = await propiedadesModel.findAll({
+          include: [
+            { model: tipoModel },
+            { model: condicionModel },
+            { model: fotoModel }
+          ],
+          where: {
+            '$propiedades.esDestacado$': value
+          }
+        });
+      
+      if (ultimasPropiedades.length && featPropiedades === 0) {
+        // Maneja el caso cuando no hay propiedades encontradas
+        res.render('propiedades', { ultimasPropiedades: null, featPropiedades:null }); // o puedes pasar un mensaje de error
+      } else {
+        // Devuelve las propiedades con relaciones en la respuesta
+        console.log(ultimasPropiedades, featPropiedades);
+        res.render('index', { ultimasPropiedades, featPropiedades });
+        // res.json(ultimasPropiedades);
+      }
+    } catch (error) {
+      console.error('Error al obtener las propiedades:', error);
+      res.status(500).json({ error: 'Error al obtener las propiedades' });
+    }
+  }
+  
+  // static async getPropiedadesIfFeatured(req, res) {
+  //   let value = 1
+    
+  //   try {
+  //     // Obtiene todas las propiedades con sus relaciones
+  //     const featPropiedades = await propiedadesModel.findAll({
+  //       include: [
+  //         { model: tipoModel },
+  //         { model: condicionModel },
+  //         { model: fotoModel }
+  //       ],
+  //       where: {
+  //         '$propiedes.esDestacado$': value
+  //       }
+  //     });
+      
+      
+  //     // Devuelve las propiedades con relaciones en la respuesta
+  //     if (featPropiedades.length === 0) {
+  //       // Maneja el caso cuando no hay propiedades encontradas
+  //       res.render('index', { featPropiedades: null }); // o puedes pasar un mensaje de error
+  //     } else {
+  //       // Devuelve las propiedades con relaciones en la respuesta
+  //       console.log(featPropiedades);
+  //       res.render('index', { featPropiedades });
+  //       // res.json(propiedades)
+  //     }
+
+
+  //   } catch (error) {
+  //     console.error('Error al obtener las propiedades:', error);
+  //     res.status(500).json({ error: 'Error al obtener las propiedades' });
+  //   }
+  // }
+
   static async postPropiedad(req, res) {
     try {
-      const { nombre, descripcion, descripcioncorta, direccion, precio, esDestacado, tipo, condicion } = req.body;
+      const { nombre, descripcion, descripcioncorta, direccion, precio, esDestacado, mapa, tipo, condicion } = req.body;
       
       const tipoId = getTipoId(tipo);
       const condicionId = getCondicionId(condicion);
@@ -143,6 +220,7 @@ class Propiedades {
         direccion,
         precio,
         esDestacado,
+        mapa,
         tipoId,
         condicionId,
       });

@@ -17,17 +17,18 @@
           <button type="button">Contactanos!</button>
 
         </div>
-        <div class="contacto">
+        <div class="contacto" id="contacto">
           <h3>Necesitas Ayuda?</h3>
           <h2>Escribinos</h2>
-          <form>
+          <form action="https://formsubmit.co/corvattafranco@gmail.com" method="POST">
             <label for="name"></label>
             <input class="forms" placeholder="Nombre" type="text" id="name" name="name" required>
             <label for="email"></label>
             <input class="forms" placeholder="Email" type="email" id="email" name="email" required>
             <label for="message"></label>
             <textarea class="forms" placeholder="Mensaje" id="message" name="message" rows="5" required></textarea>
-            <button class="form-button" type="submit">Enviar Mensaje</button>
+            <input class="form-button" type="submit" value="Enviar Mensaje">
+            <input type="hidden" name="_next" value="http://localhost:3000/">
           </form>
 
         </div>
@@ -37,68 +38,63 @@
 
   </main>
 
-  <section class="latest-properties">
-    <h2 class="latest-properties-title">Popiedades mas recientes</h2>
-    <div class="cards">
+  <section class="listed-properties">
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Venta</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
-      </div>
+    <div class="cards" id="cards">
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Venta</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
-      </div>
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Alquiler</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
+        <% featPropiedades.forEach(propiedad=> { %>
+            <div class="card">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <% propiedad.fotos.forEach(foto=> { %>
+                            <div class="swiper-slide">
+                                <img class="swiper-slide-img"
+                                    src="/images/propiedades/<%= foto.nombre %>" alt="">
+                            </div>
+                            <% }) %>
 
-      </div>
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Venta</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
+                <p class="card-condition">
+                    <%= propiedad.condicione.nombre %>
+                        <button class="mas-btn" data-propiedad-id=<%=propiedad.id %>>Ver mas</button>
+                </p>
+                <div class="card-description">
+                    <p class="card-description-type">
+                        <%= propiedad.tipo.nombre %>
+                    </p>
+                    <p class="card-description-name">
+                        <%= propiedad.nombre %>
+                    </p>
+                    <p class="card-description-price">
+                        <%= propiedad.precio %>
+                    </p>
+                    <p class="card-description-specs">
+                        <%= propiedad.descripcioncorta %>
+                    </p>
 
-      </div>
-
+                </div>
+            </div>
+            <% }) %>
     </div>
 
 
 
-  </section>
+
+
+</section>
 
 
 
   <div class="about">
     <div class="about-cover">
       <div class="about-content">
-        <img class="about-content-img" src="./images/como-montar-inmobiliaria.jpg" alt="">
+        <img class="about-content-img" src="/images/como-montar-inmobiliaria.jpg" alt="">
         <div class="about-text">
           <h3> Quienes Somos?</h3>
           <h2>Sobre Nosotros</h2>
@@ -108,7 +104,7 @@
             día a día, para brindarles novedades sobre nuevos proyectos de inversión, optimizando las
             posibilidades a fin de lograr la mayor efectividad posible en las operaciones; utilizando para
             ello, además, asesoría profesional, legal y técnica</p>
-          <button class="about-content-btn">Contactanos</button>
+          
         </div>
       </div>
     </div>
@@ -116,62 +112,115 @@
 
   </div>
 
-  <section class="featured-properties">
-    <h2 class="featured-properties-title">Propiedades Destacadas</h2>
+  <section class="listed-properties">
+    <h2 class="main-properties-title"></h2>
 
-    <div class="cards">
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Venta</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
-      </div>
+    <div class="cards" id="cards">
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Venta</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
-      </div>
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Venta</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
+        <% ultimasPropiedades.forEach(propiedad=> { %>
+            <div class="card">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <% propiedad.fotos.forEach(foto=> { %>
+                            <div class="swiper-slide">
+                                <img class="swiper-slide-img"
+                                    src="/images/propiedades/<%= foto.nombre %>" alt="">
+                            </div>
+                            <% }) %>
 
-      </div>
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
 
-      <div class="card">
-        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
-        <p class="card-condition">En Venta</p>
-        <div class="card-description">
-          <p class="card-description-type">Residencial</p>
-          <p class="card-description-name">Departamento Zona Universitaria</p>
-          <p class="card-description-price">$4500</p>
-          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
-        </div>
+                <p class="card-condition">
+                    <%= propiedad.condicione.nombre %>
+                        <button class="mas-btn" data-propiedad-id=<%=propiedad.id %>>Ver mas</button>
+                </p>
+                <div class="card-description">
+                    <p class="card-description-type">
+                        <%= propiedad.tipo.nombre %>
+                    </p>
+                    <p class="card-description-name">
+                        <%= propiedad.nombre %>
+                    </p>
+                    <p class="card-description-price">
+                        <%= propiedad.precio %>
+                    </p>
+                    <p class="card-description-specs">
+                        <%= propiedad.descripcioncorta %>
+                    </p>
 
-      </div>
-
+                </div>
+            </div>
+            <% }) %>
     </div>
 
 
 
-  </section>
+
+
+</section>
+
+  <!-- <section class="main-properties">
+    <h2 class="main-properties-title">Propiedades Destacadas</h2>
+
+    <div class="cards" id="ultimasCards">
+
+       <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <img class="card-img" src="./images/propiedades/IMG-20230225-WA0020.jpg" alt="">
+        <p class="card-condition">En Venta</p>
+        <div class="card-description">
+          <p class="card-description-type">Residencial</p>
+          <p class="card-description-name">Departamento Zona Universitaria</p>
+          <p class="card-description-price">$4500</p>
+          <p class="card-description-specs">3 dormitorios/ 1 baño/ 68m2</p>
+        </div>
+
+      </div> -->
+
+    <!-- </div> -->
+
+
+
+  </section> -->
 
   <div class="search" id="search">
     <div class="search-cover">
@@ -256,8 +305,39 @@
 
   <% include ./ejs/footer %>
 
+  <script src=" https://cdn.jsdelivr.net/npm/swiper@9.3.2/swiper-bundle.min.js"></script>
+  <script>
 
-  <script src="./javascripts/index.js"></script>
+      const swipers = Array.from(document.querySelectorAll('.swiper'));
+
+      swipers.forEach(swiper => {
+          new Swiper(swiper, {
+              // Configuración de Swiper para cada swiper individual
+              direction: 'horizontal',
+              loop: true,
+              // ... otras opciones
+              // If we need pagination
+              pagination: {
+                  el: swiper.querySelector('.swiper-pagination'),
+              },
+
+              // Navigation arrows
+              navigation: {
+                  nextEl: swiper.querySelector('.swiper-button-next'),
+                  prevEl: swiper.querySelector('.swiper-button-prev'),
+              },
+
+              // And if we need scrollbar
+              scrollbar: {
+                  el: swiper.querySelector('.swiper-scrollbar'),
+              },
+          });
+      });
+
+  </script>
+
+  <script src="/javascripts/index.js"></script>
+  <script src="/javascripts/propiedades.js"></script>
 
 </body>
 
